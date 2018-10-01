@@ -1,6 +1,6 @@
 # Lecture 1: October 1, 2018
 * Applications, compiler, OS sits on ISA (instruction set architecture) layer
-* Instruction set architecturerend
+* Instruction set architecture
   * Instructions: add, multiply accumulator
   * Registers
 * Micro architecture sits under ISA
