@@ -28,3 +28,15 @@
   * UI devices: display, keyboard, mouse
   * Storage devices: HDD, SSD, CD/DVD, flash
   * Network adapters: for communicating with other computers
+## Computer Abstractions and Technology
+* Spectrum from CPU to ASIC
+  * CPU is more flexible; ASIC is designed to particular task
+### Understanding Performance
+* Algorithm
+  * Determines number of operations executed
+* Programming language, compiler, architecture
+  * Determine number of machine instructions executed per operation
+* Processor and memory system
+  * Determine how fast instructions are executed
+* I/O system (including OS)
+  * Determines how fast I/O operations are executed
