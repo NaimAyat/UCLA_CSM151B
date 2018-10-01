@@ -22,3 +22,9 @@
 * Datapath + control
 * Pipelining
 * Caches
+## Components of a Computer
+* Same across all types of computers - desktop, server, embedded
+* Input / output includes
+  * UI devices: display, keyboard, mouse
+  * Storage devices: HDD, SSD, CD/DVD, flash
+  * Network adapters: for communicating with other computers
