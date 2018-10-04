@@ -14,13 +14,13 @@
   int sum = 0;
   boolean proceed = true;
   while (proceed) {
-    if (l instanceof Nil)
-      proceed = false;
+     if (l instanceof Nil)
+        proceed = false;
     else if (l instanceof Cons) {
-      sum = sum + ((Cons) l).head;
-      l = ((Cons) l).tail;
-      // Notice the two type casts!
-    }
+       sum = sum + ((Cons) l).head;
+       l = ((Cons) l).tail;
+       // Notice the two type casts!
+     }
   }
   ```
   * Advantage: the code is written without touching the classes `Nil` and `Cons`
