@@ -10,3 +10,4 @@
     * Move from `HI`/`LO` to `rd`
   * `mul rd, rs, rt`
     * Least significant 32 bits of product to `rd`
+## [Booth's Algorithm](https://www.youtube.com/watch?v=1ubyXuXxIWU)
