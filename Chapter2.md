@@ -143,3 +143,16 @@ Loop: sll $t1, $s3, 2
 ### Signed vs. Unsigned
 * `slt`, `slti` for signed comparison
 * `sltu`, `sltui` for unsigned comparison
+### Procedure Calling
+1. Place parameters in registers
+2. Transfer control to procedure
+3. Aquire storage for procedure
+4. Perform procedure's operations
+5. Place result in register for caller
+6. Return to place of call
+### Register Usage
+* `$gp`: global pointer for static data (reg 28)
+* `$sp`: stack pointer (reg 29)
+* `$fp`: frame pointer (reg 30)
+* `$ra`: return address (reg 31)
+### Procedure Call 
