@@ -160,3 +160,7 @@ Loop: sll $t1, $s3, 2
   * `jal ProcedureLabel` puts address of following instruction in `$ra` and jumps to target address
 * `jr` jump register
   * `jr $ra` copies `$ra` to program counter
+### Branch Adressing
+* PC-relative addressing
+  * Target address = PC + offset * 4
+  * PC already incremented by 4 at this time
