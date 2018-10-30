@@ -34,4 +34,9 @@
       add $t1, $s3, $s4
       sub $s0, $t0, $t1
       ```
-  
+#### Memory Operands
+* Memory is byte addressed - each address identifies an 8-bit byte
+* Words are aligned in memory - address must be a multiple of 4
+* To apply arithmetic operations:
+  * Load values from memory into registers
+  * Store result from register to memory
