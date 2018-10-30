@@ -30,3 +30,4 @@
   * `IC = Instruction_Count = (Instructions/Program)`
   * `CPI = Clock_Cycles_Per_Instruction = (Clock_Cycles/Instruction)`
   * `CT = Cycle_Time = (Seconds/Clock_Cycle)`
+* `Execution_Time = IC * CPI * CT`
