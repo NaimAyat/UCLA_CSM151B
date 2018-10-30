@@ -156,3 +156,7 @@ Loop: sll $t1, $s3, 2
 * `$fp`: frame pointer (reg 30)
 * `$ra`: return address (reg 31)
 ### Procedure Call 
+* `jal` jump and link
+  * `jal ProcedureLabel` puts address of following instruction in `$ra` and jumps to target address
+* `jr` jump register
+  * `jr $ra` copies `$ra` to program counter
