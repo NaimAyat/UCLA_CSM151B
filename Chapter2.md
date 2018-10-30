@@ -66,3 +66,4 @@
 * Compliler must use registers for variables as much as possible
 ### 2's Complement
 * To negate, flip all the bits until the last `1`, leave that and all that follows as-is
+* For sign extension: replicate the sign bit to the left. Ex: `0101 1111 -> 0000 0000 0101 1111`
