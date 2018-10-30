@@ -60,8 +60,9 @@
 * MIPS register 0 (`$zero`) is the constant 0; this cannot be overwritten
 * Useful for common operations, like moving between registers
   * `add $t2, $s1, $zero`
-
 ### Registers vs. Memory
 * Registers are faster to access
 * Operating on memory requires loads and stores
 * Compliler must use registers for variables as much as possible
+### 2's Complement
+* To negate, flip all the bits until the last `1`, leave that and all that follows as-is
