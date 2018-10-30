@@ -112,8 +112,19 @@ if (i==j) f=g+h;
 else f=g-h;
 ```
 ```
-bne $s3, $s4, Else
-add $s0, $s1, $s2
-j Exit
+      bne $s3, $s4, Else
+      add $s0, $s1, $s2
+      j Exit
 Else: sub $s0, $s1, $s2
+```
+```
+while (save[i] == k) i += 1;
+```
+```
+Loop: sll $t1, $s3, 2
+      add $t1, $t`, $s6
+      lw $t0, 0($t1)
+      bne $t0, $s5, Exit
+      addi $s3, $s3, 1
+      j Loop
 ```
