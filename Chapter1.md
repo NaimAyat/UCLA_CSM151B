@@ -11,7 +11,7 @@
 * CPU time - time spent processing on a given time
 ### CPU Clocking
 * Clock period = duration of a clock cycle (in seconds)
-* Clock rate = cycles per second (in Hertz)
+* Clock rate = cycles per second (in Hertz. Note: GHz = 1billion or 10^9 Hz)
 #### CPU Time
 * `CPU_Time = CPU_Clock_Cycles * Clock_Cycle_Time = CPU_Clock_Cycles / Clock_Rate`
   * Improved by:
