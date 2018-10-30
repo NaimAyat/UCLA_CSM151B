@@ -128,9 +128,9 @@ Loop: sll $t1, $s3, 2
       addi $s3, $s3, 1
       j Loop
 ```
-## Basic Block
+### Basic Block
 * Sequence of instructions without embedded branches (except at the end) and no branch targets (except at the beginning)
-## More Conditional Operations
+### More Conditional Operations
 * `slt` set result to 1 if a condition is true, otherwise set to 0
   * `slt rd, rs, rt` `if (rs<rt) rd = 1; else rd = 0;`
 * `slti` set result to 1 if a condition is true, otherwise set to 0
@@ -140,3 +140,6 @@ Loop: sll $t1, $s3, 2
   slt $t0, $s1, $s2 # if ($s1 < $s2)
   bne $t0, $zero, L # branch to L
   ```
+### Signed vs. Unsigned
+* `slt`, `slti` for signed comparison
+* `sltu`, `sltui` for unsigned comparison
