@@ -13,3 +13,9 @@
 * Add and subtract, three operations: two sources and one destination
   * `add a, b, c   # a gets b+c`
   * All arithmetic operations have this form
+  * Example: convert `f = (g + h) - (i + j);` to MIPS:
+    ```
+    add t0, g, h   # temp t0 = g + h
+    add t1, i, j   # temp t1 = i + j
+    sub f, t0, t1  # f = t0 - t1
+    ```
