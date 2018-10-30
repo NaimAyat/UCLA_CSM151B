@@ -22,6 +22,7 @@
 #### Register Operands
 * MIPS has a 32x32-bit register file numbered 0 to 31
   * 32-bit data called a "word"
+  * Each word represented by a 5-bit address
 * Assembler names
   * `$t0, $t1, ..., $t9` for temporary values
   * `$s0, $s1, ..., $s9` for saved variables
