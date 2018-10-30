@@ -19,3 +19,9 @@
     add t1, i, j   # temp t1 = i + j
     sub f, t0, t1  # f = t0 - t1
     ```
+#### Register Operands
+* MIPS has a 32x32-bit register file numbered 0 to 31
+  * 32-bit data called a "word"
+* Assembler names
+  * `$t0, $t1, ..., $t9` for temporary values
+  * `$s0, $s1, ..., $s9` for saved variables
