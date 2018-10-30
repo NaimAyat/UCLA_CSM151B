@@ -22,3 +22,6 @@
 * `Clock_Cycles = Instruciton_Count * Cycles_Per_Instruction`
 * `CPU_Time = Instruction_Count * CPI * Clock_Cycle_Time = (Instruction_Count * CPI) / Clock_Rate`
 * Note: CPI = average cycles per instruction
+#### CPI in Detail
+* `Clock_Cycles = sum(CPI_i * Instruction_Count_i)`
+* `CPI = (Clock_Cycles / Instruction_Count)`
