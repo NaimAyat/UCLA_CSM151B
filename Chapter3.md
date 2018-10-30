@@ -20,6 +20,6 @@
 4. Iteration = 1, Step = 2, shift (extend preserving sign bit) and create new iteration
 5. Create new iteration
 
-[1](img/1.png)
+[!1](img/1.png)
 
-[2](img/2.png)
+[!2](img/2.png)
