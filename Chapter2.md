@@ -101,3 +101,19 @@
 * Useful to include bits in a word `or $t0, $t1, $t2`
 ### NOT Operations
 * Useful to invert bits in a word `nor $t0, $t1, $zero`
+## Conditional (Branch) Operations
+* `beq rs, rt, L1` means: `if (rs == rt)` branch to an instruction labeled `L1`
+* `bne rs, rt, L1` means: `if (rs != rt)` branch to an instruction labeled `L1`
+* `j L1` is an unconditional jump to instruction labeled `L1`
+##### Example
+* `f ... g` in `$s0 ... $s4`
+```
+if (i==j) f=g+h;
+else f=g-h;
+```
+```
+bne $s3, $s4, Else
+add $s0, $s1, $s2
+j Exit
+Else: sub $s0, $s1, $s2
+```
