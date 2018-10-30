@@ -67,3 +67,37 @@
 ### 2's Complement
 * To negate, flip all the bits until the last `1`, leave that and all that follows as-is
 * For sign extension: replicate the sign bit to the left. Ex: `0101 1111 -> 0000 0000 0101 1111`
+## Representing Instructions
+* Instructions are encoded in binary machine code
+* MIPS instructions encoded as 32-bit instruction words
+### MIPS R-format Instructions
+* op: operation code (opcode) = 6 bits
+* rs: first source register number = 5 bits
+* rt: second source register number = 5 bits
+* rd: destination register number = 5 bits
+* shamt: shift amount = 5 bits
+* funct: function code (extends opcode) = 6 bits
+### MIPS I-format Instructions (for immediate arithmetic and load/store instructions)
+* op: operation code (opcode) = 6 bits
+* rs: first source register number = 5 bits
+* rt: second source register number = 5 bits
+* constant or address = 16 bits
+### Logical Operators for Bitwise Manipulation
+* Shift left = `sll`
+* Shift right = `srl`
+* Bitwise AND = `and, andi`
+* Bitwise OR = `or, ori`
+* Bitwise NOT = `nor`
+### Shift Operations
+* op: operation code (opcode) = 6 bits
+* rs: first source register number = 5 bits
+* rt: second source register number = 5 bits
+* rd: destination register number = 5 bits
+* shamt: shift amount = 5 bits
+* funct: function code (extends opcode) = 6 bits
+### AND Operations
+* Useful to mask bits in a word (select some bits, clear others to 0) `and $t0, $t1, $t2`
+### OR Operations
+* Useful to include bits in a word `or $t0, $t1, $t2`
+### NOT Operations
+* Useful to invert bits in a word `nor $t0, $t1, $zero`
