@@ -167,3 +167,5 @@ Loop: sll $t1, $s3, 2
 ### Jump Addressing
 * Jump (`j` and `jal`) targets could be anywhere in text segment
   * Encode full address in instruction
+### Branching Far Away
+* If branch target is too far to encode with 16-bit offset, assembler rewrites the code using jump 
