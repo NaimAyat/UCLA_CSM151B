@@ -8,3 +8,8 @@
   * How many? Location? Types? How to specify?
 * Instruction format
   * Size? How many formats?
+### MIPS ISA
+#### Arithmetic Operations
+* Add and subtract, three operations: two sources and one destination
+  * `add a, b, c   # a gets b+c`
+  * All arithmetic operations have this form
