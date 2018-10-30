@@ -25,3 +25,8 @@
 #### CPI in Detail
 * `Clock_Cycles = sum(CPI_i * Instruction_Count_i)`
 * `CPI = (Clock_Cycles / Instruction_Count)`
+### Performance Summary
+* `CPU_Time = (Instructions/Program) * (Clock_Cycles/Instruction) * (Seconds/Clock_Cycle)`
+  * `IC = Instruction_Count = (Instructions/Program)`
+  * `CPI = Clock_Cycles_Per_Instruction = (Clock_Cycles/Instruction)`
+  * `CT = Cycle_Time = (Seconds/Clock_Cycle)`
