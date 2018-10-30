@@ -20,4 +20,5 @@
     * There is usually a trade off between clock rate and cucle count
 #### Instruction Count and CPI (Cycles per Instruction)
 * `Clock_Cycles = Instruciton_Count * Cycles_Per_Instruction`
-* `CPU_Time = Instruction_Count * CPI * Clock_Cycle_Time = (Instruction_Count * CPI) / Clock_Rate
+* `CPU_Time = Instruction_Count * CPI * Clock_Cycle_Time = (Instruction_Count * CPI) / Clock_Rate`
+* Note: CPI = average cycles per instruction
