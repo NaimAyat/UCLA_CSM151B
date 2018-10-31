@@ -20,10 +20,10 @@
   4. 5 bits for destination register `rd`
   5. 5 bits for shift amount `shamt`. If no shift necessary, this is 00000
   6. 6 bits for `funct`, this defines which function will be performed on the registers
-## R-Type add Datapath walk through
+## R-Type `add` Datapath Walkthrough
 1. Load 32-bit instruction from memory, from the address stored in the program counter (PC)
    * This address is also used to calculate the address of the next instruction
-2. The opcode goes to the control unit, which decodes the bits and chooses which path will be used
+2. The opcode goes to the Control unit, which decodes the bits and chooses which path will be used
    1. RegDest gets a high signal to tell the multiplexer that feeds the register file that 3 registers are being used
    2. ALUOp set to high to signify to the ALU control unit what data needs to be passed
    3. RegWrite set to high to signify that data must be written to a register
@@ -37,4 +37,40 @@
 7. Since a low signal was sent to Data Memory, it will not be utilized
 8. ALU result is sent back to Write Data register
 9. In step 1, we saw that the current address was also sent to an adder. This adder adds 4 to give us an address that is 32 bits away, AKA the next instruction. This address is then loaded into the program counter, and the cycle restarts.
-  
+## J-Type `j` Datapath Walkthrough
+1. Load 32-bit instruction from memory, from the address stored in the program counter (PC)
+   * This address is also used to calculate the address of the next instruction
+2. The opcode goes to the control unit
+   1. Jump is given a high signal, which toggles the MUX which is to be utilized by the jump instruction
+   2. All other Control signals get a low signal, since we don't need them
+3. The remaining 26 bits of the instruction get converted to an address, and the 4 MSBs are reused from the previous instruction. The two LSBs get 00 to form a full 32 bit address.
+4. The MUX that got a high signal from the control unit allows the resulting address to be loaded back into the program counter.
+## I-Type `beq` Datapath Walkthrough
+1. Load 32-bit instruction from memory, from the address stored in the program counter (PC)
+   * This address is also used to calculate the address of the next instruction
+2. The opcode goes to the Control unit
+   1. `Branch` gets high signal
+   2. `ALUOp` gets high signal because there needs to be a conditional check
+   3. All other signals get low
+3. `rs` and `rt` are sent as input to the ALU
+   * If the condition does not pass, then the current address is simply incremented by 4 and we continue to the next instruction
+4. If the condition passes: the ALU sends a high signal to the AND gate to activate the MUX signifying that the condition passed
+5. The 16-bit `immediate` field is sign extended to 32 bits and shifted left twice to convert distance to bytes
+6. This number is then added to the incremented address of the current instruction, and the final result is sent back to the program counter
+## I-Type `sw` Datapath Walkthrough
+1. Load 32-bit instruction from memory, from the address stored in the program counter (PC)
+   * This address is also used to calculate the address of the next instruction
+2. The opcode goes to the Control unit
+   1. ALUOp gets high signal, since we need to add offset 
+   2. MemWrite gets high signal since we are doing store word
+   3. ALUSrc gets high to activate MUX into ALU
+   4. All else gets low
+3. `rs` (the address in memory where we want to store data) gets read and passed as input to ALU
+4. `rt` contains data that needs to be written to memory, so it goes to Write Data in Data Memory
+5. The 16-bit `immediate` immediate field (the offset) is extended to 32 bits
+6. Since the control unit activated the ALUSrc MUX, the offset is fed as input to the ALU
+7. The ALU adds the destination address with the offset
+8. The result goes to Address in Data Memory, and Data Memory stores Write Data to the Address
+9. The current address is incremented by 4 and the next instruction gets loaded by program counter
+
+   
