@@ -72,5 +72,8 @@
 7. The ALU adds the destination address with the offset
 8. The result goes to Address in Data Memory, and Data Memory stores Write Data to the Address
 9. The current address is incremented by 4 and the next instruction gets loaded by program counter
-
-   
+## Misc
+### ALUOp
+* 00 = addition
+* 01 = subtraction
+* 10 = TBD by funct field of R-type
