@@ -98,3 +98,9 @@
 * Reduciton
   * Half the processors send, other half receive and add
   * The quarter send, quarter receive and add, ...
+## Grid Computing
+* Separate Computers interconnected by long-haul networks
+  * Eg. internet connections
+  * Work unites farmed out, results sent back
+* Can make use of idle time on PCs
+  * Eg. SETI@home, world community grid
