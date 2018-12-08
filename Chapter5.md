@@ -134,3 +134,46 @@
   * D-cache: 0.36 * 0.04 * 100 = 1.44
 * Actual CPI = 2 + 2 + 1.44 = 5.44
   * Ideal CPU is 5.44 / 2 = 2.72 times faster
+## Average Access Time (AMAT)
+* Hit time is also important for performance
+* AMAT = hit time + miss rate * miss penalty
+### AMAT Example
+* CPU with 1ns clock, hit time = 1 cycle, miss penalty = 20 cycles, I-cache miss rate = 5%
+* AMAT = 1 + 0.05 * 20 = 2ns
+  * 2 cycles per instruction
+## Performance Summary
+* When CPU performance increases
+  * Miss penalty becomes more significant
+* Decreasing base CPI
+  * Greater proportion of time spent on memory stalls
+* Increasing clock rate
+  * Memory stalls account for more CPU cycles
+* Can't neglect cache behavior when evaluating system performance
+## Associative Caches
+* Fully associative
+  * Allow a given block to go in any cache entry
+  * Requires all entries to be searched at once
+  * Comparator per entry (expensive)
+* N-way set associative
+  * Each set contains n entries
+  * Block number determines which set
+    * (Block number) modulo (#sets in cache)
+  * Search all entries in a given set at once
+  * n comparators (less expensive)
+## How Much Associativity
+* Increased associativity decreases miss rate
+  * But with diminishing returns
+* Simulation of a system with 64KB, D-cache, 16-word blocks, SPEC2000
+  * 1-way: 10.3%
+  * 2-way: 8.6%
+  * 4-way: 8.3%
+  * 8-way: 8.1%
+## Replacement Policy
+* Direct mapped: no choice
+* Set associative
+  * Prefer non-valid entry, if there is one
+  * Otherwise, choose among entries in the set
+* Least-recently used (LRU)
+  * Choose the one unused for the longest time
+    * Simple for 2-way, manageable for 4-way, impractical beyond that
+* Random gives approx. same performance as LRU for high associativity
