@@ -291,4 +291,22 @@
 * Alternative: use virtual address tag
   * Complications due to aliasing
     * Different virtual addresses for shared physical address
-  
+## Memory Hierarchy Recap
+* Common principles apply at all levels of the memory hierarchy
+  * Based on notions of caching
+* At each level in the hierarchy
+  * Block placement
+  * Finding a block
+  * Replacement on a miss
+  * Write policy
+## Block Placement
+* Determined by associativity
+  * Direct mapped (1-way associative)
+    * One choice for placement
+  * n-2ay set associative
+    * n choices within a set
+  * Fully associative
+    * Any location
+* Higher associativity reduces miss rate, but increases complexity, cost, and access time
+## Finding a Block
+![img](https://i.imgur.com/wshWNws.png)
