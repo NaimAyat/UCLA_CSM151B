@@ -17,7 +17,9 @@ If there is no forwarding or hazard detection, insert nops to ensure correct exe
     |    |    |    |     |     | IF | ID  | NOP | EX  | MEM | WB  |     |     |     |
     |    |    |    |     |     |    | IF  | NOP | ID  | NOP | NOP | EX  | MEM | WB  |
 ```
+
 *     Hence, the following code takes 14 cycles to complete.
+
 ```
         ADD r5, r2, r1
         NOP
