@@ -156,3 +156,35 @@
   * Avoid control hazards by avoiding loops
 * More general than ad-hoc media extensions (such as MMX, SSE)
   * Better match with compiler tech
+## History of GPUs
+* Early video cards
+  * Frame buffer memory with address generation for video output
+* 3D graphics processing
+  * Originally high-end computers
+  * Moore's law -> lower cost, higher density
+  * 3D graphics cards for PCs and game consoles
+* Graphics processing units
+  * Specilized processors oriented to 3D graphics tasks
+  * Vertex/pixel processing, shading, texter mapping, rasterization
+## GPU Architectures
+* Pricessing is highly data-parallel
+  * GPUs are highly multithreaded
+  * Use thread switching to hide memory latench
+    * Less reliance on multi-level caches
+  * Graphics memory is wide and high-bandwidth
+* GPU Trends
+  * Heterogeneous CPU/GPU systems
+  * CPU for sequential code, GPU for parallel code
+* Programming languages/APIs
+  * DirectX, OpenGL
+  * C for Graphics, High Level Shader Language (HLSL)
+  * Compute Unified Device Architecture (CUDA)
+## Example: NVIDIA Tesla
+* Streaming processors
+  * Single-precision FP and integer units
+  * Each SP is fine-grained multithreaded
+* Warp: group of 32 threads
+  * Executed in parallel, SIMD style
+    * 8 SPs * 4 clock cyles
+  * Hardware contexts for 24 warps
+    * Registers, PCs,...
