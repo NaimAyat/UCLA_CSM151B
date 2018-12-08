@@ -310,3 +310,33 @@
 * Higher associativity reduces miss rate, but increases complexity, cost, and access time
 ## Finding a Block
 ![img](https://i.imgur.com/wshWNws.png)
+## Replacement
+* Choise of entry to replace on a miss
+  * Least recently used (LRU)
+    * Complex and costly hardware for high associativity
+  * Random
+    * Close to LRU, easier to implement
+* Virtual memory
+  * LRU approximation with hardware support
+## Write Policy
+* Write-through
+  * Update both upper and lower levels
+  * Simplifies replacement, but may require write buffer
+* Write-back
+  * Update upper level only
+  * Update lower level only when block is replaced
+  * Need to keep more state
+* Virtual memory
+  * Only write-back is feasible, given disk write latency
+## Source of Misses
+* Compulsory misses (aka cold start misses)
+  * First access to a block
+* Capacity misses
+  * Due to finite cache size
+  * A replaced block is later accessed again
+* Conflict misses (aka collision misses)
+  * In a non-fully associative cache
+  * Due to competition for entries in a set
+  * Would not occur in a fully associative cache of the same total size
+## Cahce Design Trade-Offs
+![IMG](https://i.imgur.com/S1ElP7k.png)
