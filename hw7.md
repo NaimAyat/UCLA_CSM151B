@@ -29,4 +29,26 @@ For a direct-mapped cache design with a 32-bit address, the following bits of th
   * For a 128 byte block size:
     * Miss rate: 1/64
   * This is exploiting spatial locality, or the idea that if an item is referenced, nearby items are likely to be referenced in the near future. 
-  
+# 5.6
+* 2: Assume that main memory accesses take 70 ns and that memory accesses are 36% of all instructions. The following table shows data for L1 caches attached to each of two processors, P1 and P2. P1: L1 Size = 2KiB, L1 Miss Rate = 8%, L1 Hit Time = 0.66ns. P2: L1 Size = 4KiB, L1 Miss Rate = 6%, L1 Hit Time = 0.90ns. What is the Average Memory Access Time for P1 and P2?
+```
+AMAT = hit time + miss rate * miss penalty
+P1:
+L1 hit time 0.66ns
+L1 miss rate: 8%
+Memory access time: 70ns
+AMAT(cycles) = 0.66 + 0.08 * 70 = 6.26
+
+P2:
+L1 miss rate: 6%
+L1 hit time: 0.9 ns
+Memory access time: 70ns
+AMAT(cycles) = 0.9 + 0.06 * 70 = 5.10 
+```
+* 4: Consider the addition of an L2 cache to P1 to presumably make up for its limited L1 cache capacity. Use the L1 cache capacities and hit times from the previous table when solving these problems. The L2 miss rate indicated is its local miss rate. L2 Size = 1MiB, L2 Miss Rate = 95%, L2 Hit Time = 5.62ns.
+```
+L2 miss rate: 95%
+L2 hit time: 5.62
+New AMAT(cycles) = 0.66 + 0.08 * (5.62 + 0.95 * 70) = 6.42
+AMAT actually becomes slightly worse due to the high miss rate of the L2 cache
+```
