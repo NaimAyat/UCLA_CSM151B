@@ -122,3 +122,45 @@ sub $t2, $s0, $t3
 * Move hardware to determine outcome to ID stage
   * Target address adder
   * Register comparator
+## Data Hazards for Branches
+* If a comparison register is a destination of 2nd or 3rd preceding ALU instruction
+  * Can resolve using forwarding
+* If a comparison register is a destination of preceding ALU instruciton or 2nd preceding load instruction 
+  * Need 1 stall cycle
+* If comparison register is destination of immediately preceding load instruction
+  * Need 2 stall cycles
+## Dynamic Branch Predicition
+* In deeper and superscalar pipelines, branch penalty is more significant
+* Use dynamic prediciton
+  * Branch prediction buffer (aka branch history table)
+  * Indexed by recent branch instruction addresses
+  * Stores outcome taken/not taken
+  * To execute branch:
+    * Check table, expect same outcome
+    * Start fetching from fall-through or target
+    * If wrong, flush pipeline and flip prediciton
+### 1-bit Predictor: Shortcoming
+* Inner loop branches mispredicted twice
+  * Mispredict as taken on last iteration of inner loop
+  * Then mispredict as not taken on first iteration of inner loop next time around
+### 2-bit Predictor
+* Only change prediction on two successive mispredictions
+### Calculating the Branch Target
+* Even with predictor, still need to calculate target address
+  * 1-cycle penalty for a taken branch
+* Branch target buffer
+  * Cache of target addresses
+  * Indexed by PC when instruction fetched
+    * If hit and instruction is branch predicted taken, can fetch target immediately
+## Exceptions and Interrupts
+* "Unexpected" events requiring change in flow of control
+* Exception 
+  * Arises within CPU (undefined opcode, overflow, syscall...)
+* Interrupt
+  * From an external I/O controller
+* Dealing with them without sacrificing performance is hard
+### Handling Exceptions
+* In MIPS, exceptions managed by a System Control Coprocessor
+* Save PC of offending or interrupted instruciton
+* Save indication of the problem
+* Jump to handler at 8000 00180
