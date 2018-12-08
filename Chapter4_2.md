@@ -118,3 +118,7 @@ sub $t2, $s0, $t3
     * Record history of each branch
   * Assume future behavior will continue the trend
     * When wrong, stall while re-fetching, and update history
+### Reducing Branch Delay
+* Move hardware to determine outcome to ID stage
+  * Target address adder
+  * Register comparator
