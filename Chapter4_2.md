@@ -164,3 +164,150 @@ sub $t2, $s0, $t3
 * Save PC of offending or interrupted instruciton
 * Save indication of the problem
 * Jump to handler at 8000 00180
+### An Alternate Mechanism
+* Vectored interrupts
+  * Handler address determined by the cause
+* Instructuons either deal with interrupt or jump to real handler
+### Handler Actions
+* Read cause and transfer to relevant handler
+* Determine action required
+* If restartable
+  * Take corrective action
+  * Use EPC to return to program
+* Otherwise
+  * Terminate program
+  * Report error using EPC
+### Exceptions in a Pipeline
+* Another form of control hazard
+* Consider overflow on add in EX stage `add $1, $2, $1`
+  * Prevent $1 from being clobbered
+  * Complete prev instructions
+  * Flush add and subsequent instructions
+  * Set Cause and EPC reg values
+  * Transfer control to handler
+* Similar to mispredicted branch
+  * Use much of same hardware
+### Exception Properties
+* Restatable exceptions
+  * Pipeline can flush the instruction
+  * Handler executes, then returns to the instruction
+    * Refetched and executed from scratch
+* PC saved in EPC register
+  * Identifies causing instruction
+  * Actually PC+4 is saved
+    * Handler must adjust
+### Multiple Exceptions
+* Pipelining overlaps multiple instructions
+  * Could have multiple exceptions at once
+* Simple approach: deal with exception from earliest instruction
+  * Flush subsequent instructions
+  * Precise exceptions
+* In complex pipelines
+  * Multiple instructions issued per cycle
+  * Out-of-order completion
+### Imprecise Exceptions
+* Just stop pipeline and save state
+  * Including exception cause(s)
+* Let the handler work out
+  * Which instruction(s) had exceptions
+  * Which to complete or flush
+    * May require manual completion
+* Simplifies hardware, but more complex handler software
+* Not feasible for complex multi-issue out-of-order pipelines
+# Advanced Pipelining
+## Instruction-Level Parallelism (ILP)
+* Pipelining: executing multiple instructions in parallel
+* To increase ILP
+  * Deeper pipeline
+    * Less work per stage -> shorter clock cycle
+  * Multiple issue
+    * Replicate pipeline stages -> multiple pipelines
+    * Start multiple instructions per clock cycle
+    * CPI < 1, so use instructions per cycle (IPC)
+    * Eg. 4GHz 4-way multiple-issue
+      * 16 BIPS, peak CPI = .25, peak IPC = 4
+    * But dependencies reduce this in practice
+## Multiple Issue
+* Static multiple issue
+  * Compile groups instructions to be issued together
+  * Packages them into "issue slots"
+  * Compiler detects and avoids hazards
+* Dynamic multiple issue
+  * CPU examines instruction stream and chooses instructions to issue each cycle
+  * Compiler can help by reordering instructions
+  * CPU resolves hazards using advanced techniques at runtime
+## Speculation
+* "Guess" what do do with an instruction
+  * Start operation as soon as possible
+  * Check whether guess was right
+    * If so, complete the op
+    * If not, rollback and do right thing
+* Common to static and dynamic multiple issue
+### Compiler/Hardware Speculation
+* Compiler can reorder instructions
+  * eg. move load before branch
+  * Can include "fix-up" instructions to recover from incorrect guesses
+* Hardware can look ahead for instructions to execute
+  * Buffer results until it determines they are actually needed
+  * Flush buffers on incorrect speculation
+### Static Multiple ISsue
+* Compiler groups instructions into "issue packets" 
+  * Group of instructions that can be issues on a single cycle
+  * Determined by pipeline resources required
+* Think of an issue packet as a very long instruction
+  * Specifies multiple concurrent operations
+  * Very long instruction word (VLIW)
+### Scheduling Static Multiple Issue
+* Compiler must remove some/all hazards
+  * Reorder instructions into issue packets
+  * No dependencies with a packet
+  * Possible some dependencies between packets
+    * Varies between ISAs, compiler must know
+  * Pad with nop if necessary
+### MIPS with Static Dual ISsue
+* Two-issue packets
+  * One ALU/branch instruction
+  * One load/store instruction
+  * 64-bit aligned
+    * ALU/branch, then load/store
+    * Pad an unused instruction with nop
+### Hazards in the Dual-Issue MIPS
+* More instructions executing in parallel
+* EX data hazard
+  * Forwarding avoided stalls with single-issue
+  * Now can't use ALU result in load/store in same packet
+* Load-use hazard
+  * Still one cycle use latency, but now two instructions
+* More aggressive scheduling required
+### Dylamic Multiple Issue
+* "Superscalar" processors
+* CPU decides whether to issue 0, 1, 2, ... each cycles
+  * Avoiding structural and data hazards
+* Avoids the need for compiler scheduling
+### Dynamic Pipeline Scheduling
+* Allow CPU to execute instructions out of order to avoid stalls
+  * But commit result to registers in order
+### Register Renaming
+* Reservation stations and reorder buffer effectively provide register renaming
+* On instruction issue to reservation station
+  * If operand is available in register file or recorder buffer
+    * Copied to reservation station
+    * No longer required in the register, can be overwritten
+  * If operand is not yet available
+    * It will be provided to the reservation station by a function unit
+    * Register update may not be required
+### Why do dynamic scheduling?
+* Why not just let the compiler schedule code?
+* Not all stalls are predictable (eg. cache misses)
+* Can't always schedule around branches
+  * Branch outcome is dynamically determined
+* Different implementations of an ISA have different latencies and hazards
+### Does Multiple Issue Work?
+* Yes, but not as much as we'd like
+* Programs have real dependencies that limit ILP
+* Some dependencies are hard to eliminate (eg. pointer aliasing)
+* Some parallelism is hard to expose
+  * Limited window size during instruction issue
+* Memory delays and limited bandwidth
+  * Hard to keep pipelines full
+* Speculation can help if done well
