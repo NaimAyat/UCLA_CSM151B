@@ -43,5 +43,6 @@ This exercise examines the accuracy of various branch predictors for the followi
   * Always taken: hit, miss, hit, hit, miss = 3/5 = 60%
   * Always not taken: miss, hit, miss, miss, hit = 2/5 = 40%
 * Using FSM: 
+![img](https://i.imgur.com/k6TCoyG.png)
   * NT, NT, NT, NT. Accuracy 1/4 = 25%
 * Repeated forever: 
