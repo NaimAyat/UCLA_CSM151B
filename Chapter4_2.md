@@ -78,3 +78,7 @@ sub $t2, $s0, $t3
 * Load-use hazard when
   * ID/EX.MemRead and ((ID/EX.RegisterRt = IF/ID.RegisterRs) or (ID/EX.RegisterRT = IF/ID.RegisterRt))
 * If detected, stall and insert bubble
+## How to Stall Pipeline
+* Force control values in ID/EX reg to 0
+  * EX, MEM, and WB do nop
+* Prevent update of PC and IF/ID reg
