@@ -69,3 +69,12 @@ sub $t2, $s0, $t3
 ### Forwarding Conditions
   ![img](https://i.imgur.com/KaCSlEu.jpg)
   ![img](https://i.imgur.com/DYl7q6C.png)
+## Load-Use Data Hazard
+* Can't always avoid stalls by forwarding, might need to stall as well
+### Load-Use Data Hazard Detection
+* Check when using instruction is decoded in ID stage
+* ALU operand register numbers in ID stage are given by
+  * IF/ID.REgisterRs, IF/ID.RegisterRt
+* Load-use hazard when
+  * ID/EX.MemRead and ((ID/EX.RegisterRt = IF/ID.RegisterRs) or (ID/EX.RegisterRT = IF/ID.RegisterRt))
+* If detected, stall and insert bubble
