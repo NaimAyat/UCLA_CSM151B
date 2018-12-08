@@ -104,3 +104,55 @@
   * Work unites farmed out, results sent back
 * Can make use of idle time on PCs
   * Eg. SETI@home, world community grid
+## Multithreading
+* Performing multiple threads of execution in parallel
+  * Replicate registers, PC, etc
+  * Fast switching between threads
+* Fine-grain multithreading
+  * Switch threads after each cycle
+  * Interleave instruction executioin
+  * If one thread stalls, others are executed
+* Coarse-grain multithreading
+  * Only siwtch on long stall (eg. L2 cache miss)
+  * Simplifies hardware, but doesn't hide short stalls (eg. data hazards)
+## Simultaneous Multithreading
+* In multiple-issue dynamically scheduled processor
+  * Schedule instructions from multiple threads
+  * Instructions from independent threads execute when function units are available
+  * Withn threads, dependencies handled by scheduling and register renaming
+## Future of Multithreading
+* Power considerations -> simplified microarchitectures
+  * Simpler forms of multithreading
+* Tolerating cache-miss latency
+  * Thread switch may be most effective
+* Multiple simple cores might share resources more effectively
+## Instruction and Data Streams
+![img](https://i.imgur.com/xNifSwz.png)
+## SIMD
+* Operate elementwise on vectors of data
+* All processors execute the same instruction at the same time
+  * Each with different data address, etc.
+* Simplifies synchronization
+* Reduced instruction control hardware
+* Works best for highly data-parallel applications
+## Vector Processors
+* Highly pipelined function units
+* Stream data from/to vector registers to units
+  * Data collected from memory into registers
+  * Results stored from registers to memory
+* Example: vector extension to MIPS
+  * 32 x 64-element registers (64bit elements)
+  * Vector instructions
+    * lv, sv: load/store vector
+    * addv.d: add vectors of double
+    * addvs.d: add scalar to each element of vector of double
+* Significantly reduces instruction-fetch bandwidth
+## Vector vs. Scalar
+* Vector architectures and compilers
+  * Simplify data-parallel programming
+  * Explicit statement of absence of loop-carried dependences
+    * Reduced checking in hardware
+  * Regular access patterns benefit from interleaved and burst memory
+  * Avoid control hazards by avoiding loops
+* More general than ad-hoc media extensions (such as MMX, SSE)
+  * Better match with compiler tech
