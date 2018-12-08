@@ -37,3 +37,11 @@ sw                                             IF   ID   EX   MEM  WB
         NOP
         SW r3, 0(r5)
 ```
+# 14.16
+This exercise examines the accuracy of various branch predictors for the following repeating pattern (e.g., in a loop) of branch outcomes: T, NT, T, T, NT
+* What is the accuracy of always-taken and always-not-taken predictors for this sequence of branch outcomes?
+  * Always taken: hit, miss, hit, hit, miss = 3/5 = 60%
+  * Always not taken: miss, hit, miss, miss, hit = 2/5 = 40%
+* Using FSM: 
+  * NT, NT, NT, NT. Accuracy 1/4 = 25%
+* Repeated forever: 
