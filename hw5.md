@@ -8,17 +8,21 @@ sw  r3,0(r5)
 ```
 If there is no forwarding or hazard detection, insert nops to ensure correct execution.
 #### Answer
-
+* Add WB needs to align with first lw ID
+* First lw WB needs to align with or ID
+* or WB needs to align with sw ID
 ```
-    | C1 | C2 | C3 | C4  | C5  | C6 | C7  | C8  | C9  | C10 | C11 | C12 | C13 | C14 |
-    |----+----+----+-----+-----+----+-----+-----+-----+-----+-----+-----+-----+-----|
-    | IF | ID | EX | MEM | WB  |    |     |     |     |     |     |     |     |     |
-    |    | IF | ID | NOP | NOP | EX | MEM | WB  |     |     |     |     |     |     |
-    |    |    | IF | NOP | NOP | ID | EX  | MEM | WB  |     |     |     |     |     |
-    |    |    |    |     |     | IF | ID  | NOP | EX  | MEM | WB  |     |     |     |
-    |    |    |    |     |     |    | IF  | NOP | ID  | NOP | NOP | EX  | MEM | WB  |
+add  IF  ID  EX  MEM  WB
+nop      IF  ID  EX   MEM  WB
+nop          IF  ID   EX   MEM  WB
+lw               IF   ID   EX   MEM  WB
+lw                    IF   ID   EX   MEM  WB
+nop                        IF   ID   EX   MEM  WB
+or                              IF   ID   EX   MEM  WB
+nop                                  IF   ID   EX   MEM  WB
+nop                                       IF   ID   EX   MEM  WB
+sw                                             IF   ID   EX   MEM  WB
 ```
-
 * Hence, the following code takes 14 cycles to complete.
 
 ```
