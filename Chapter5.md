@@ -338,5 +338,13 @@
   * In a non-fully associative cache
   * Due to competition for entries in a set
   * Would not occur in a fully associative cache of the same total size
-## Cahce Design Trade-Offs
+## Cache Design Trade-Offs
 ![IMG](https://i.imgur.com/S1ElP7k.png)
+## Concluding Remarks
+* Fast memories are small, large memories are slow
+  * Caches give the illusion of fast, large memories
+* Principle of locality
+  * Programs use a small part of their memory space frequently
+* Memory hierarchy 
+  * L1 cache <-> L2 cache <-> ... <-> DRAM memory <-> disk
+* Memory system design is critical for multiprocesses
