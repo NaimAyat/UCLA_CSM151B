@@ -38,4 +38,8 @@ sub $t2, $s0, $t3
 # Dealing with Data Hazards
 * In software: insert independent operations (no-ops)
   ![img](https://i.imgur.com/LA6AP48.png)
+  * Cycle time will not be impacted, but number of instructions increases
+  * Solution: code scheduling to avoid stalls
+    * Reorder code to avoid use of load result in next instruction
 * In hardware: insert bubbles (stall the pipeline) and forward data
+  ![img](https://i.imgur.com/lN11h2W.png)
