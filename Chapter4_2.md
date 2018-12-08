@@ -99,3 +99,13 @@ sub $t2, $s0, $t3
     * Static branch predition: base guess on instruciton type
     * Dynamic branch predicition: base guess on execution history
   * Reduce the branch delay
+### Stall on Branch
+* Wait until branch outcome determined before fetching next instruciton
+### Branch Prediction
+* Longer pipelines can't readily determine branch outcome early
+  * Stall penalty becomes unacceptable
+* Predict outcome of branch
+  * Only stall if prediction is wrong
+* In MIPS pipeline
+  * Can predict branches not taken
+  * Fetch instruction after branch, with no delay
