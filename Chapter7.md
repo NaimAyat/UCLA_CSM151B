@@ -188,3 +188,5 @@
     * 8 SPs * 4 clock cyles
   * Hardware contexts for 24 warps
     * Registers, PCs,...
+## Classifying GPUs
+![img](https://i.imgur.com/Ag3zaP1.png)
