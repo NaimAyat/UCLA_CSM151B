@@ -109,3 +109,12 @@ sub $t2, $s0, $t3
 * In MIPS pipeline
   * Can predict branches not taken
   * Fetch instruction after branch, with no delay
+* Static branch prediction
+  * Based on typical branch behavior
+  * Ex: loop and if-statement branches
+    * Predict backward branches taken, predict forward branches not taken
+* Dynamic branch prediction
+  * Hardware measures actual branch behavior
+    * Record history of each branch
+  * Assume future behavior will continue the trend
+    * When wrong, stall while re-fetching, and update history
