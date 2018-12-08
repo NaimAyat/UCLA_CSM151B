@@ -52,3 +52,49 @@
   * 100 processors, 32x32 matrix
     * Time = 10 * t_add + 1000/100 * t_add = 20 * t_add
   * Constant performance in this example
+## Shared Memory
+* SMP: shared memory multiprocessor
+  * Hardware provides single physical address space for all processors
+  * Synchronize shared variables using locks
+  * Memory access time
+    * UMA (uniform) vs NUMA (nonuniform)
+## Example: Sum Reduction
+* Sum 100,000 numbers on 100 processor UMA
+  * Each processor has ID: 0 < Pn < 100
+  * Partition 1000 numbers per processor
+  * Initial summation on each processor
+  ```
+  sum[Pn] = 0;
+    for (i = 1000*Pn; i < 1000*(Pn+1); i++) 
+       sum[Pn] = sum[Pn] + A[i]
+  ```
+* Now need to add these partial sums
+  * Reduction: divide and conquer
+  * Half the processors add pairs, then quarters...
+  * Need to synchronize between reduction steps
+## Message Passing
+* Each processor has private physical address space
+* Hardware sends/receives messages between processors
+## Loosely Coupled Clusters
+* Network of independent computers
+  * Each has private memory and OS
+  * Connected using I/O system
+    * Eg. ethernet/switch, internet
+* Suitable for applications with independent tasks
+  * Web servers, databases, simulations, ...
+* High availability, scalable, affordable
+* Problems
+  * Administration cost (prefer virtual machines)
+  * Low interconnect bandwidth
+## Sum Reduction (again)
+* Sum 100,000 on 100 processors
+* First distribute 100 numbers to each
+  * Then do partial sums
+    ```
+    sum = 0;
+    for (i = 0; i<1000; i++)
+      sum = sum + AN[i]
+    ```
+* Reduciton
+  * Half the processors send, other half receive and add
+  * The quarter send, quarter receive and add, ...
