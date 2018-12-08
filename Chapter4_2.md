@@ -68,3 +68,4 @@ sub $t2, $s0, $t3
 * And only if Rd for that instruction is not $zero
 ### Forwarding Conditions
   ![img](https://i.imgur.com/KaCSlEu.jpg)
+  ![img](https://i.imgur.com/DYl7q6C.png)
