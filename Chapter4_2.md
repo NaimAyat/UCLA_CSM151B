@@ -82,3 +82,20 @@ sub $t2, $s0, $t3
 * Force control values in ID/EX reg to 0
   * EX, MEM, and WB do nop
 * Prevent update of PC and IF/ID reg
+# Data Hazards Recap
+* Stalls reduce performance but are required to get correct results
+* Compiler can arrange code to avoid hazards and stalls (requires knowledge of pipeline structure)
+# Control Hazards
+* Branch determines flow of control
+  * Fetching next instruction depends on branch outcome
+  * Pipeline can't always fetch correct instruction, still working on ID stage of branch
+* In MIPS pipeline
+  * Need to compare registers and compute target early in pipeline
+  * Add hardware to do it in ID stage
+## Dealing with Branch Hazards
+* Hardware solutions
+  * Stall until you know which direction branch goes
+  * Guess which direction, start executing chosen path
+    * Static branch predition: base guess on instruciton type
+    * Dynamic branch predicition: base guess on execution history
+  * Reduce the branch delay
