@@ -348,3 +348,30 @@
 * Memory hierarchy 
   * L1 cache <-> L2 cache <-> ... <-> DRAM memory <-> disk
 * Memory system design is critical for multiprocesses
+## Cache Coherence Problem
+* Suppose two CPU cores share a physical address space
+  * Write-through caches
+## Coherence Defined
+* Informally: reads return most recently written value
+* Formally:
+  * P writes X; P reads X (no intervening writes)
+    * read returns written value
+  * P1 writes X; P2 reads X (sufficiently later)
+    * read returns written value
+  * P1 writes X; P2 writes X
+    * All processors see writes in the same order, end up with same final value for X
+ ## Cache Coherence Protocols
+ * Operations performed by caches in multiprocessors to ensure coherence
+   * Migration of data to local caches
+     * Reduces bandwidth for shared memory
+   * Replication of read-shared data
+     * Reduces contention for access
+ * Snooping protocols
+   * Each cache monitors bus reads/writes
+ * Directory-based protocols
+   * Cahces and memory record sharing status of blocks in a directory
+ ## Invalidating Snooping Protocols
+ * Cache gets exclusive access to a block when it is to be written
+   * Broadcasts an invalidate message on the bus
+   * Subsequent read in another cache misses
+     * Owning cache supplies updated value
