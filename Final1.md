@@ -28,6 +28,14 @@ sw                                                                            IF
 ```
 * Arithmetic operations compute results in EX stage
 * Load instructions produce results at the end of MEM stage; we need NOP of we want lw followed by add, for ex
+``` 
+ LW  uses IF, ID, EX, MEM, WB
+ add uses IF, ID, EX, ---, WB
+ SW  uses IF, ID, EX, MEM, --
+ R   uses IF, ID, EX, ---, WB
+ beq uses IF, ID, EX, ---, --
+```
+
 
 lw   IF  ID  EX  MEM  WB
 lw       IF      ID   EX  MEM  WB
@@ -58,4 +66,4 @@ sw                                                           IF   ID  EX   MEM  
 * #entry in TLB / total #page table = 64 * 8 / 2^17 = 2^9 / 2^17 = 1 / 2^8 = 1 / 256
 * TLB has 64 sets, so 6 bit needed for the index. The 15 right most bits are used for page offset. So, the six bits are: bit 20 ~ bit 15
 
-#5
+#7
