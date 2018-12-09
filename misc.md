@@ -6,36 +6,3 @@
   4. Add offset of 4 to ADDI
   
   
-```
-addi $s0, $s0, 4    lw $t0, 0($s0)
-nop                 nop
-nop                 lw $t1, 0($t0)
-bne $s0, $s2, Loop
-add $t1, $s1, $t1   
-nop                 sw $t1, 0($t0)
-```
-```
-lw $t0, 0($s0)
-lw $t1, 0($t0)
-add $t1, $s1, $t1
-sw $t1, 0($t0)
-
-lw $t2, 4($s0)
-lw $t3, 0($t2)
-add $t3, $s1, $t3
-sw $t3, 0($t2)
-
-addi $s0, $s0, 8
-bne $s0, $s2, Loop
-```
-
-```
-addi $s0, $s0, 8   lw $t0, 0($s0)
-                   lw $t2, 4($s0)
-                   lw $t1, 0($t0)
-                   lw $t3, 0($t2)
-add $t1, $s1, $t1
-bne $s0, $s2, Loop sw $t1, 0($t0)
-add $t3, $s1, $t3 
-                   sw $t3, 0($t2)
-```
