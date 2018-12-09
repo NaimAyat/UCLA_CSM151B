@@ -35,8 +35,7 @@ sw                                                                            IF
  R   uses IF, ID, EX, ---, WB
  beq uses IF, ID, EX, ---, --
 ```
-
-
+```
 lw   IF  ID  EX  MEM  WB
 lw       IF      ID   EX  MEM  WB
 bne              IF   ID       EX   MEM  WB
@@ -45,7 +44,7 @@ lw                                       IF  ID  EX  MEM WB
 lw                                           IF      ID  EX  MEM  WB
 bne                                                  IF      ID   EX  MEM  WB
 sw                                                           IF   ID  EX   MEM  WB
-
+```
 #3
 * Since we have 64-byte blocks and 2^6 = 64, the offset size is 6 bits.
 * Since 1KB is 2^10 bytes, we do 2^10/2^6 to yield 2^4. Hence, the index is 4 bits.
